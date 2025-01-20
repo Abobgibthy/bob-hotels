@@ -1,0 +1,390 @@
+@import "./mixins.scss";
+
+:root {
+  --primary-background: #000000;
+  --text-black: #14213d;
+  --text-yellow: #fca311;
+  --text-yellow-hover: #FE621D;
+  --text-gray: #e5e5e5;
+  --text-gray-hover: #dfdcdc;
+  --text-white: #ffffff;
+  --desktop: 1024px;
+  --mobile: 580px;
+}
+
+@font-face {
+  font-family: "Delmon";
+  src: url("../fonts/delmon-delicate.regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  font-family: "Delmon";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+button, a {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+// =========================================================================
+// GLOBAL CLASS
+// =========================================================================
+.align-center {
+  text-align: center;
+}
+
+.title {
+  letter-spacing: 6px;
+}
+
+
+// =========================================================================
+// NAVBAR
+// =========================================================================
+.navbar {
+  background: var(--primary-background);
+  padding: 1em 2em;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  gap: 1em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  .logo {
+    gap: 1em;
+    display: flex;
+    justify-content: start;
+
+    img {
+      width: 50px;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    a {
+      font-weight: bold;
+      text-decoration: none;
+      color: var(--text-white);
+
+      &:hover {
+        color: var(--text-yellow);
+        transition: color .3s;
+      }
+    }
+  }
+
+  .nav-list {
+    gap: 1em;
+    display: flex;
+    justify-content: end;
+
+    a {
+      text-decoration: none;
+      color: var(--text-white);
+      @include standard-transition;
+      padding: 0.5em 1em;
+      border-radius: 20px;
+      font-weight: bolder;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        color: var(--text-gray);
+        @include standard-transition;
+      }
+    }
+
+    .login {
+      background: var(--text-white);
+      -webkit-text-fill-color: var(--text-black);
+
+      &:hover {
+        -webkit-text-fill-color: var(--text-yellow);
+        @include standard-transition;
+      }
+    }
+  }
+}
+
+// =========================================================================
+// CONTAINER
+// =========================================================================
+.container {
+  padding: 1em 2em;
+}
+
+// =========================================================================
+// HOME
+// =========================================================================
+.home {
+  background-image: url("../img/hotel-background-hero.png");
+  // background-image: url("../img/hotel-background.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
+  position: relative;
+
+  .filter {
+    filter: unset;
+    color: var(--text-white);
+    font-weight: bold;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// =========================================================================
+// HOTELS
+// =========================================================================
+.hotels {
+  padding: 1em 2em;
+  height: 100vh;
+  margin-bottom: 10em;
+
+  @media screen and (min-width: 1024px) {
+    padding: 1em 15em;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 1em 10em;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 40px;
+    letter-spacing: 6px;
+  }
+
+  .hotel-list {
+    gap: 1em;
+    display: grid;
+    padding-bottom: 10em;
+    grid-template-columns: repeat(1, 1fr);
+
+    @media screen and (min-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+      border: 1px solid;
+      border-color: var(--text-gray);
+      @include standard-transition;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        scale: 1.03;
+        scale: 1;
+        @include standard-transition;
+      }
+
+      .image-container {
+        img {
+          width: 100%;
+          height: 300px;
+          object-fit: cover;
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+        }
+      }
+
+      .content-container {
+        padding: 1em;
+        display: grid;
+        gap: 8px;
+
+        .header {
+          gap: 1em;
+          display: flex;
+          justify-content: space-between;
+
+          span {
+            gap: 8px;
+            display: flex;
+          }
+
+          svg {
+            color: var(--text-yellow)
+          }
+        }
+
+        .location {
+          gap: 0.5em;
+          display: flex;
+        }
+
+        .feature {
+          display: block;
+        }
+
+        .button {
+          margin-top: 1em;
+          gap: 1em;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+
+          button {
+            width: 100%;
+            background-color: transparent;
+            border: 1px solid;
+            border-color: var(--text-gray);
+            border-radius: 10px;
+            padding: 0.5em 1em;
+            font-weight: bold;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+
+          .booking {
+            button {
+              background-color: var(--text-yellow);
+              color: var(--text-white);
+
+              &:hover {
+                background-color: var(--text-yellow-hover);
+              }
+            }
+          }
+
+          .detail {
+            button {
+              color: var(--text-black);
+              background-color: var(--text-white);
+              border: 1px solid var(--text-black);
+
+              &:hover {
+                transition: color .02s;
+                color: var(--text-yellow-hover);
+                background-color: var(--text-white);
+                border: 1px solid var(--text-yellow-hover);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// =========================================================================
+// LOGIN
+// =========================================================================
+
+.container-login {
+  gap: 2em;
+  display: grid;
+  padding: 4em 2em;
+
+  @media screen and (min-width: 1280px) {
+    padding: 4em 30em;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 4em 15em;
+  }
+
+  .form-group {
+      gap: 2em;
+      display: grid;
+
+      input {
+          width: 100%;
+      }
+
+      .p-icon-field, .p-password {
+          width: 100%;
+      }
+  }
+
+  .form-input {
+      gap: 1em;
+      display: grid;
+  }
+
+  .form-button {
+      gap: 1em;
+      display: grid;
+      
+      button {
+          width: 100%;
+          background-color: var(--primary-background);
+          @include standard-transition;
+
+          &:hover {
+              color: var(--text-yellow);
+              @include standard-transition;
+          }
+
+          .p-button-label, span {
+              transition-duration: unset;
+          }
+      }
+
+      p {
+          gap: 7px;
+          display: flex;
+          justify-content: center;
+      }
+
+      a {
+          text-decoration: none;
+          color: var(--text-black);
+          font-weight: bold;
+
+          &:hover {
+              color: var(--text-yellow);
+              text-decoration: underline;
+              @include standard-transition;
+          }
+      }
+
+      .signup {
+          text-decoration: none;
+          color: var(--text-black);
+          font-weight: bold;
+
+          &:hover {
+              cursor: pointer;
+              color: var(--text-yellow);
+              text-decoration: underline;
+              @include standard-transition;
+          }
+      }
+  }
+}
