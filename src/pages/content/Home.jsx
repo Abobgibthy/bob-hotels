@@ -106,26 +106,26 @@ export default function Home() {
       <div className="hotels">
         <h1>Daftar Hotel</h1>
         <div className="hotel-list">
-          {hotel.map((country) => (
-            <div className="card" key={country.id}>
+          {hotel.map((selectedHotel) => (
+            <div className="card" key={selectedHotel.id}>
               <div className="image-container">
-                <img src={getImg(country.name_img)} alt="hotel" />
+                <img src={getImg(selectedHotel.name_img)} alt="hotel" />
               </div>
               <div className="content-container">
                 <div className="header">
-                  <h3>{country.name_hotel}</h3>
+                  <h3>{selectedHotel.name_hotel}</h3>
                   <span>
-                    {country.rating}/5
+                    {selectedHotel.rating}/5
                     <FaStar />
                   </span>
                 </div>
                 <div className="location">
                   <IoLocationOutline />
-                  <p>{country.location}</p>
+                  <p>{selectedHotel.location}</p>
                 </div>
                 <div className="location">
                   <IoIosPricetags />
-                  <p>{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(country.price)}</p>
+                  <p>{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(selectedHotel.price)}</p>
                 </div>
                 <div className="feature"></div>
                 <div className="button">
@@ -133,14 +133,14 @@ export default function Home() {
                     <Button
                       label="Booking"
                       icon="pi pi-external-link"
-                      onClick={() => handleConfirmBooking(country.id)}
+                      onClick={() => handleConfirmBooking(selectedHotel.id)}
                     />
                   </div>
                   <div className="detail">
                     <Button
                       label="Detail"
                       icon="pi pi-external-link"
-                      onClick={() => handleHotelDetail(country.id)}
+                      onClick={() => handleHotelDetail(selectedHotel.id)}
                     />
                   </div>
                 </div>
